@@ -70,7 +70,6 @@ public class FrameMain extends JFrame {
 
             if (countOfSteps < list.size()) {
                 JTableUtils.writeArrayToJTable(outputTable, list.get(countOfSteps).array);
-                logic.printArray(list.get(countOfSteps).array);
                 countOfSteps++;
             }
         } catch (Exception ex) {
