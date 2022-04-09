@@ -5,14 +5,11 @@ import ru.vsu.cs.berezin_y_a.util.JTableUtils;
 import ru.vsu.cs.berezin_y_a.util.SwingUtils;
 
 import javax.swing.*;
-import java.util.ArrayList;
 import java.util.List;
 
 public class FrameMain extends JFrame {
 
     Logic logic = new Logic();
-
-    public List<SortState> list = new ArrayList<>();
     public int countOfSteps = 0;
 
     private JTable inputTable;
@@ -50,7 +47,7 @@ public class FrameMain extends JFrame {
             int[] array = JTableUtils.readIntArrayFromJTable(inputTable);
             assert array != null;
 
-            logic.sortArray(array, list);
+            logic.sortArray(array);
             countOfSteps = 0;
 
             JTableUtils.writeArrayToJTable(outputTable, array);
@@ -64,8 +61,10 @@ public class FrameMain extends JFrame {
             int[] array = JTableUtils.readIntArrayFromJTable(inputTable);
             assert array != null;
 
+            List<SortState> list = logic.sortArray(array);
+
             if (countOfSteps == 0) {
-                logic.sortArray(array, list);
+                logic.sortArray(array);
             }
 
             if (countOfSteps < list.size()) {
@@ -80,12 +79,14 @@ public class FrameMain extends JFrame {
     private void clearTables() {
         JTableUtils.writeArrayToJTable(inputTable, new int[]{});
         JTableUtils.writeArrayToJTable(outputTable, new int[]{});
+        countOfSteps = 0;
     }
 
     private void fillRandomNumbers() {
         int[] arr = ArrayUtils.createRandomIntArray(10, 100);
         clearTables();
         JTableUtils.writeArrayToJTable(inputTable, arr);
+        countOfSteps = 0;
     }
 
 }

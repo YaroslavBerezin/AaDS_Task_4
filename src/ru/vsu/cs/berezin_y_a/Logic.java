@@ -1,11 +1,13 @@
 package ru.vsu.cs.berezin_y_a;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Logic {
 
-    public void sortArray(int[] array, List<SortState> list) {
-        list.clear();
+    public List<SortState> sortArray(int[] array) {
+        List<SortState> list = new ArrayList<>();
+
         for (int i = 0; i < array.length; i++) {
             for (int j = 0; j < array.length - 1; j++) {
                 if (array[j + 1] < array[j]) {
@@ -19,6 +21,8 @@ public class Logic {
                 }
             }
         }
+
+        return list;
     }
 
     public int[] createNewArray(int[] array) {
